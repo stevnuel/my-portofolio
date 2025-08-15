@@ -1,0 +1,37 @@
+:root {
+         --primary-color: #38e07b;
+            --secondary-color: #29382f;
+            --background-color: #111714;
+            --text-primary: #ffffff;
+            --text-secondary: #9eb7a8;
+        }
+        
+        body {
+            font-family: "Space Grotesk", "Noto Sans", sans-serif;
+        }
+        
+        .active-link {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+        
+        .section-scroll {
+            scroll-margin-top: 100px;
+        }
+        
+        .navbar-sticky {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(17, 23, 20, 0.9);
+            border-bottom: 1px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
