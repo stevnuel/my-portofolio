@@ -7,18 +7,24 @@
     <meta name="description"
         content="Steven Imanuel Naibaho - AI/ML & Data Enthusiast | Computer Science Graduate Portfolio">
     <meta name="keywords" content="Machine Learning, Data Enthusiast Web Development, Portfolio, Steven Naibaho">
-    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
-    <link as="style"
-        href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
-        onload="this.rel='stylesheet'" rel="stylesheet" />
-    <title>Portfolio by Steven Imanuel Naibaho</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png?v=2">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <title>Steven Imanuel Naibaho</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-[var(--background-color)] text-[var(--text-primary)]">
 
-    <!-- Animated Background -->
+    <!-- background animasi nya -->
     <div class="animated-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -28,7 +34,7 @@
 
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 
-        <!-- Header / Navigation -->
+        <!-- Header/Navigation -->
         <header
             class="navbar-sticky navbar-shadow flex items-center justify-between whitespace-nowrap px-6 md:px-10 py-4">
             <div class="scroll-progress" id="scrollProgress"></div>
@@ -49,13 +55,15 @@
                     <a class="nav-link text-sm font-medium leading-normal transition-colors hover:text-[var(--primary-color)] cursor-pointer"
                         href="#home">Home</a>
                     <a class="nav-link text-sm font-medium leading-normal transition-colors hover:text-[var(--primary-color)] cursor-pointer"
-                        href="#about">Tentang Saya</a>
+                        href="#about">About Me</a>
                     <a class="nav-link text-sm font-medium leading-normal transition-colors hover:text-[var(--primary-color)] cursor-pointer"
-                        href="#experience">Pengalaman</a>
+                        href="#experience">Experience</a>
                     <a class="nav-link text-sm font-medium leading-normal transition-colors hover:text-[var(--primary-color)] cursor-pointer"
-                        href="#projects">Proyek</a>
+                        href="#certificates">Certificates</a>
                     <a class="nav-link text-sm font-medium leading-normal transition-colors hover:text-[var(--primary-color)] cursor-pointer"
-                        href="#contact">Kontak</a>
+                        href="#projects">Projects</a>
+                    <a class="nav-link text-sm font-medium leading-normal transition-colors hover:text-[var(--primary-color)] cursor-pointer"
+                        href="#contact">Contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -83,6 +91,8 @@
                 onclick="closeMobileMenu()">Tentang Saya</a>
             <a class="text-2xl font-medium hover:text-[var(--primary-color)]" href="#experience"
                 onclick="closeMobileMenu()">Pengalaman</a>
+            <a class="text-2xl font-medium hover:text-[var(--primary-color)]" href="#certificates"
+                onclick="closeMobileMenu()">Sertifikat</a>
             <a class="text-2xl font-medium hover:text-[var(--primary-color)]" href="#projects"
                 onclick="closeMobileMenu()">Proyek</a>
             <a class="text-2xl font-medium hover:text-[var(--primary-color)]" href="#contact"
@@ -105,7 +115,7 @@
 
                     <!-- Hero Profile Image -->
                     <div class="profile-glow h-44 w-44 rounded-full overflow-hidden fade-in stagger-1">
-                        <img src="images/pp.JPG" alt="Hero Profile" class="h-full w-full object-cover" />
+                        <img src="images/PP.jpeg" alt="Hero Profile" class="h-full w-full object-cover" />
                     </div>
 
                     <div class="flex flex-col items-center gap-5 max-w-3xl">
@@ -328,6 +338,274 @@
                     </div>
                 </section>
 
+                <!-- Certificates Section -->
+                <section id="certificates" class="section-scroll space-y-8">
+                    <div class="text-center fade-in">
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                            Professional <span class="text-gradient">Certificates</span>
+                        </h2>
+                        <p class="text-[var(--text-secondary)] mt-3 max-w-xl mx-auto">
+                            My certificates that I have obtained from various platforms.
+                        </p>
+                    </div>
+
+                    <!-- Certificate Slider -->
+                    <div class="cert-container fade-in">
+                        <div class="cert-slider-wrapper">
+                            <button id="certPrevBtn" class="cert-nav-btn" aria-label="Previous">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+
+                            <div class="cert-slider" id="certSlider">
+                                <!-- sertifikat\ 1 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/bangkit.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Course</span>
+                                        <h3 class="cert-title">Machine Learning</h3>
+                                        <p class="cert-publisher">Bangkit Academy Led By Google, GoTo & Traveloka</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Jan 2024</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 2 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/blockchain.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Course</span>
+                                        <h3 class="cert-title">AI-Blockchain</h3>
+                                        <p class="cert-publisher">PT. Bisa Artifisial Indonesia</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Dec 2022</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong>N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 3 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/dimasti.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Competition</span>
+                                        <h3 class="cert-title">Programming</h3>
+                                        <p class="cert-publisher">Assosiasi LPTK MIPA Indonesia (AMLI)</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> June 2022</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 4 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/etime.jpg">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Competition</span>
+                                        <h3 class="cert-title">Networking Competition</h3>
+                                        <p class="cert-publisher">E-TIME PNJ</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> July 2022</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 5 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/gemastik.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Competition</span>
+                                        <h3 class="cert-title">Gemastik</h3>
+                                        <p class="cert-publisher">Puspernas</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Oct 2021</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 6 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/google.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Course</span>
+                                        <h3 class="cert-title">Google Data Analytics</h3>
+                                        <p class="cert-publisher">Google Career Certificates</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Oct 2023</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 7 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/deepl.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Course</span>
+                                        <h3 class="cert-title">Deep Learning Fresh Graduate Academy</h3>
+                                        <p class="cert-publisher">Pusat Pengembang Talenta Digital</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Sept 2025</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 8 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/dl.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Course</span>
+                                        <h3 class="cert-title">Deep Learning Track</h3>
+                                        <p class="cert-publisher">DQLab Academy</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Sept 2025</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sertifikat 9 -->
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="images/certificates/efset.png">
+                                    </div>
+                                    <div class="cert-details">
+                                        <span class="cert-badge">Certificate</span>
+                                        <h3 class="cert-title">C1 Advanced English SET</h3>
+                                        <p class="cert-publisher">EF Test</p>
+                                        <div class="cert-meta">
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                                <span><strong>Issued:</strong> Aug 2025</span>
+                                            </div>
+                                            <div class="cert-meta-item">
+                                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span><strong>Expires:</strong> N/A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="certNextBtn" class="cert-nav-btn" aria-label="Berikutnya">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Dots Indicator -->
+                        <div class="cert-dots" id="certDots"></div>
+                    </div>
+                </section>
+
                 <!-- Projects Section -->
                 <section id="projects" class="section-scroll space-y-8">
                     <h2 class="text-3xl md:text-4xl font-bold tracking-tight fade-in">
@@ -340,7 +618,7 @@
                         <div class="project-card glass-card overflow-hidden scale-in">
                             <div class="project-card-inner">
                                 <div class="relative h-52 w-full overflow-hidden">
-                                    <img src="images/pp3.png" alt="Crypto Tracker"
+                                    <img src="images/oo.png" alt="Crypto Tracker"
                                         class="h-full w-full object-cover transition-transform duration-500 hover:scale-110" />
                                     <div class="project-image-overlay flex items-end p-4">
                                         <div class="flex gap-3">
@@ -512,11 +790,9 @@
                                             d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                                     </svg>
                                 </a>
-                                <a href="https://wa.me/6282215522193" target="_blank" class="social-btn"
-                                    title="WhatsApp">
+                                <a href="https://leetcode.com/u/namesis/" target="_blank" class="social-btn" title="LeetCode">
                                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
                                     </svg>
                                 </a>
                             </div>
@@ -530,47 +806,48 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                                Kirim Pesan
+                                Contact Me
                             </h3>
-                            <form id="contactForm" class="space-y-4">
-                                <!-- Name Fields -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium mb-2">First Name</label>
-                                        <input type="text" name="firstName" class="form-input" placeholder="Nama Depan"
-                                            required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium mb-2">Last Name</label>
-                                        <input type="text" name="lastName" class="form-input" placeholder="Nama Belakang"
-                                            required>
-                                    </div>
+
+                            <!-- Formspree -->
+                            <form action="https://formspree.io/f/xgovgade" method="POST" class="space-y-4">
+                                <!-- nama lengkap -->
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Full Name</label>
+                                    <input type="text" name="name" class="form-input" placeholder="Your full name"
+                                        required>
                                 </div>
 
-                                <!-- Email Field -->
+                                <!-- Email-->
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Email</label>
                                     <input type="email" name="email" class="form-input" placeholder="namesis@example.com"
                                         required>
                                 </div>
 
-                                <!-- Subject Field -->
+                                <!-- Subject -->
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Subject</label>
                                     <input type="text" name="subject" class="form-input"
-                                        placeholder="How can I help you?">
+                                        placeholder="How can I assist you?">
                                 </div>
 
-                                <!-- Message Field -->
+                                <!-- Message -->
                                 <div>
-                                    <label class="block text-sm font-medium mb-2">Pesan</label>
+                                    <label class="block text-sm font-medium mb-2">Message</label>
                                     <textarea name="message" rows="4" class="form-input resize-none"
-                                        placeholder="Pesan Anda di sini..." required></textarea>
+                                        placeholder="Your message here..." required></textarea>
                                 </div>
+
+                                <!-- Hidden field untuk redirect setelah submit -->
+                                <input type="hidden" name="_next" value="https://stevnuel.github.io/my-portofolio/?success=true">
+                                
+                                <!-- Anti-spam honeypot -->
+                                <input type="text" name="_gotcha" style="display:none">
 
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn-primary w-full justify-center">
-                                    <span>Kirim Pesan</span>
+                                    <span>Send Message</span>
                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -598,7 +875,7 @@
 
                 <!-- Copyright -->
                 <p class="text-sm text-[var(--text-secondary)] text-center">
-                    © 2025 <span class="text-[var(--primary-color)]">Steven Imanuel Naibaho</span>. All rights reserved.
+                    © 2026 <span class="text-[var(--primary-color)]">Steven Imanuel Naibaho</span>. All rights reserved.
                 </p>
             </div>
         </footer>

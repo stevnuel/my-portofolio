@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initMobileMenu();
     initScrollToTop();
     initParallax();
+    initCertificates();
 });
 
 /**
@@ -174,49 +175,117 @@ function initTypingEffect() {
  * penanganan Form Kontak
  */
 function initContactForm() {
+    // Contact Form Handler
     const contactForm = document.getElementById('contactForm');
-
     if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-
+            
             const formData = new FormData(this);
-            const firstName = formData.get('firstName');
-            const lastName = formData.get('lastName');
-            const email = formData.get('email');
-            const message = formData.get('message');
+            const messageData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
 
-            // Basic validation
-            if (!firstName || !lastName || !email || !message) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Show loading state
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalHTML = submitButton.innerHTML;
-            submitButton.innerHTML = `
-                <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+            // Tampilkan loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span>Sending...</span>
+                <span>Mengirim...</span>
             `;
-            submitButton.disabled = true;
+            submitBtn.disabled = true;
 
-            // Simulate API call
-            setTimeout(() => {
-                showNotification('Thank you for your message! I will get back to you soon.', 'success');
+            try {
+                const response = await fetch('http://localhost:3000/api/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(messageData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Tampilkan notifikasi sukses
+                    showNotification('Pesan berhasil dikirim! Terima kasih telah menghubungi saya.', 'success');
+                    this.reset();
+                } else {
+                    showNotification('Gagal mengirim pesan. Silakan coba lagi.', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Fallback: simpan ke localStorage jika server tidak aktif
+                saveToLocalStorage(messageData);
+                showNotification('Pesan disimpan secara lokal. Server sedang offline.', 'warning');
                 this.reset();
-                submitButton.innerHTML = originalHTML;
-                submitButton.disabled = false;
-            }, 2000);
+            }
+
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         });
+    }
+
+    // Fungsi untuk menyimpan ke localStorage sebagai fallback
+    function saveToLocalStorage(messageData) {
+        const messages = JSON.parse(localStorage.getItem('portfolioMessages') || '[]');
+        messages.push({
+            id: Date.now(),
+            timestamp: new Date().toISOString(),
+            ...messageData
+        });
+        localStorage.setItem('portfolioMessages', JSON.stringify(messages));
+    }
+
+    //tampilkan notifikasi
+    function showNotification(message, type = 'success') {
+
+        const existingNotif = document.querySelector('.notification-toast');
+        if (existingNotif) existingNotif.remove();
+
+        const colors = {
+            success: 'bg-green-500',
+            error: 'bg-red-500',
+            warning: 'bg-yellow-500'
+        };
+
+        const icons = {
+            success: `<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`,
+            error: `<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`,
+            warning: `<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>`
+        };
+
+        const notification = document.createElement('div');
+        notification.className = `notification-toast fixed bottom-6 right-6 ${colors[type]} text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 z-[100] transform translate-y-full opacity-0 transition-all duration-300`;
+        notification.innerHTML = `
+            ${icons[type]}
+            <span>${message}</span>
+            <button onclick="this.parentElement.remove()" class="ml-2 hover:opacity-70">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        `;
+
+        document.body.appendChild(notification);
+
+        // Animasi masuk
+        setTimeout(() => {
+            notification.classList.remove('translate-y-full', 'opacity-0');
+        }, 100);
+
+        setTimeout(() => {
+            notification.classList.add('translate-y-full', 'opacity-0');
+            setTimeout(() => notification.remove(), 300);
+        }, 5000);
     }
 }
 
@@ -295,58 +364,84 @@ function initParallax() {
 }
 
 /**
- * notip
+ * Certificate Inline Slider
  */
-function showNotification(message, type = 'info') {
-    // apus notifikasi yang ada
-    const existingNotification = document.querySelector('.notification-toast');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
+function initCertificates() {
+    const slider = document.getElementById('certSlider');
+    const prevBtn = document.getElementById('certPrevBtn');
+    const nextBtn = document.getElementById('certNextBtn');
+    const dotsContainer = document.getElementById('certDots');
 
-    // buat elemen notifikasi
-    const notification = document.createElement('div');
-    notification.className = `notification-toast fixed top-24 right-4 z-[200] px-6 py-4 rounded-xl shadow-2xl transform translate-x-full opacity-0 transition-all duration-300 flex items-center gap-3 max-w-sm`;
+    if (!slider) return;
 
-    // styling berdasarkan tipe
-    if (type === 'success') {
-        notification.style.background = 'linear-gradient(135deg, #38e07b 0%, #1a9f52 100%)';
-        notification.style.color = '#000';
-    } else if (type === 'error') {
-        notification.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
-        notification.style.color = '#fff';
-    } else {
-        notification.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
-        notification.style.color = '#fff';
-    }
+    const cards = Array.from(slider.querySelectorAll('.cert-card'));
+    
+    if (cards.length === 0) return;
 
-    // ikon berdasarkan tipe
-    const icon = type === 'success'
-        ? '<svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>'
-        : type === 'error'
-            ? '<svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>'
-            : '<svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
-
-    notification.innerHTML = `${icon}<span class="font-medium">${message}</span>`;
-
-    document.body.appendChild(notification);
-
-    // animasi masuk
-    requestAnimationFrame(() => {
-        notification.style.transform = 'translateX(0)';
-        notification.style.opacity = '1';
+    // Generate dots
+    cards.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = 'cert-dot' + (idx === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Sertifikat ${idx + 1}`);
+        dot.addEventListener('click', () => scrollToCard(idx));
+        dotsContainer.appendChild(dot);
     });
 
-    // animasi keluar dan hapus
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        notification.style.opacity = '0';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 300);
-    }, 4000);
+    const dots = dotsContainer.querySelectorAll('.cert-dot');
+
+    function scrollToCard(index) {
+        const card = cards[index];
+        if (card) {
+            const sliderRect = slider.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+            const scrollLeft = slider.scrollLeft + (cardRect.left - sliderRect.left);
+            slider.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+    }
+
+    function getCurrentIndex() {
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        return Math.round(slider.scrollLeft / cardWidth);
+    }
+
+    function scrollSlider(direction) {
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        const currentIndex = getCurrentIndex();
+        const totalCards = cards.length;
+
+        // Jika di card terakhir dan klik next, kembali ke awal
+        if (direction === 1 && currentIndex >= totalCards - 1) {
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+            return;
+        }
+
+        // Jika di card pertama dan klik prev, pergi ke terakhir
+        if (direction === -1 && currentIndex <= 0) {
+            const lastCardPosition = (totalCards - 1) * cardWidth;
+            slider.scrollTo({ left: lastCardPosition, behavior: 'smooth' });
+            return;
+        }
+
+        slider.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+    }
+
+    function updateDots() {
+        const scrollLeft = slider.scrollLeft;
+        const cardWidth = cards[0]?.offsetWidth || 300;
+        const activeIdx = Math.round(scrollLeft / cardWidth);
+
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === activeIdx);
+        });
+    }
+
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollSlider(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollSlider(1));
+
+    slider.addEventListener('scroll', updateDots);
+
+    updateDots();
 }
 
 /**
@@ -370,5 +465,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Check for success parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        // Tampilkan notifikasi sukses
+        showSuccessNotification();
+        
+        // Hapus parameter dari URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+});
+
+function showSuccessNotification() {
+    // Buat elemen notifikasi
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-24 right-6 z-50 glass-card p-4 flex items-center gap-3 animate-slide-in';
+    notification.innerHTML = `
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20">
+            <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <div>
+            <p class="font-semibold text-green-500">Pesan Terkirim!</p>
+            <p class="text-sm text-[var(--text-secondary)]">Terima kasih, saya akan segera menghubungi Anda.</p>
+        </div>
+        <button onclick="this.parentElement.remove()" class="ml-4 text-[var(--text-secondary)] hover:text-white">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove setelah 5 detik
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
 
 window.closeMobileMenu = closeMobileMenu;
